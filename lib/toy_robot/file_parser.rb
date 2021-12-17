@@ -1,3 +1,5 @@
+require 'byebug'
+
 module ToyRobot
   class FileParser
     attr_reader :placer

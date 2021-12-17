@@ -1,5 +1,6 @@
 require 'spec_helper'
 require './lib/toy_robot/file_parser'
+require 'byebug'
 
 RSpec.describe ToyRobot::FileParser do
   subject { ToyRobot::FileParser.new }
