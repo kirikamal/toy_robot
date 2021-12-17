@@ -44,8 +44,9 @@ RSpec.describe ToyRobot::Placer do
     end
 
     it 'should tell the robot to report' do
-      expect(robot).to receive(:report)
-      subject.report
+      expect(robot).to receive(:report) { { north: 3, east: 3, direction: "NORTH" } }
+      msg = "Robot's current position is: 3,3,NORTH\n"
+      expect { subject.report }.to output(msg).to_stdout
     end
   end  
 end

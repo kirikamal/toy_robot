@@ -25,7 +25,8 @@ module ToyRobot
     end
 
     def report
-      robot.report
+      position = robot.report
+      puts "Robot's current position is: #{position[:east]},#{position[:north]},#{position[:direction]}"
     end    
   end
 end
