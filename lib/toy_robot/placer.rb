@@ -6,13 +6,14 @@ module ToyRobot
       @table = table
     end
 
-    def place(width, length, facing)
-      return unless @table.valid_position?(width, length)
+    def place(east, north, facing)
+      return unless @table.valid_position?(east, north)
 
-      @robot = Robot.new(width, length, facing)
+      @robot = Robot.new(east, north, facing)
     end
 
     def move
+      return unless @table.valid_position?(*robot.next_move)
       robot.move
     end
 
@@ -27,6 +28,10 @@ module ToyRobot
     def report
       position = robot.report
       puts "Robot's current position is: #{position[:east]},#{position[:north]},#{position[:direction]}"
-    end    
+    end
+
+    def robot_placed?
+      !robot.nil?
+    end
   end
 end

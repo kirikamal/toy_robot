@@ -4,14 +4,27 @@ module ToyRobot
 
     DIRECTIONS = ["NORTH", "EAST", "SOUTH", "WEST"]
     
-    def initialize(north = 0, east = 0, direction = "NORTH")
-      @north = north
+    def initialize(east = 0, north = 0, direction = "NORTH")
       @east = east
+      @north = north
       @direction = direction
     end
 
     def move
       send("move_#{@direction.downcase}")
+    end
+
+    def next_move
+      case @direction
+      when "NORTH"
+        [@east, @north + 1]
+      when "SOUTH"
+        [@east, @north - 1]
+      when "EAST"
+        [@east + 1, @north]
+      when "WEST"
+        [@east - 1, @north]
+      end
     end
 
     def turn_left

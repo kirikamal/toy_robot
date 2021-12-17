@@ -23,7 +23,7 @@ RSpec.describe ToyRobot::Placer do
   end
 
   context'when robot has been placed' do
-    let(:robot) { instance_double(ToyRobot::Robot) }
+    let(:robot) { instance_double(ToyRobot::Robot, next_move: [0, 0]) }
     before { 
       allow(subject).to receive(:robot).and_return(robot)
     }
@@ -47,6 +47,52 @@ RSpec.describe ToyRobot::Placer do
       expect(robot).to receive(:report) { { north: 3, east: 3, direction: "NORTH" } }
       msg = "Robot's current position is: 3,3,NORTH\n"
       expect { subject.report }.to output(msg).to_stdout
+    end
+  end
+
+  context 'when robot is placed at table boundary' do
+    before do
+      subject.place(0, 4, "NORTH")
+    end
+
+    it 'should not move past the table boundary' do
+      subject.move
+      msg = "Robot's current position is: 0,4,NORTH\n"
+      expect { subject.report }.to output(msg).to_stdout
+    end
+  end
+
+  context '#next_move' do
+    context 'when facing north' do
+      subject { ToyRobot::Robot.new(0, 0, "NORTH") }
+  
+      it 'should move to (0, 1)' do
+        expect(subject.next_move).to eq([0, 1])
+      end
+    end
+  
+    context 'when facing east' do
+      subject { ToyRobot::Robot.new(0, 0, "EAST") }
+  
+      it 'should next move to (0, 1)' do
+        expect(subject.next_move).to eq([1, 0])
+      end
+    end
+  
+    context 'when facing south' do
+      subject { ToyRobot::Robot.new(0, 0, "SOUTH") }
+  
+      it 'should next move to (0, -1)' do
+        expect(subject.next_move).to eq([0, -1])
+      end
+    end
+  
+    context 'when facing west' do
+      subject { ToyRobot::Robot.new(0, 0, "WEST") }
+  
+      it 'should move to (0, 1)' do
+        expect(subject.next_move).to eq([-1, 0])
+      end
     end
   end  
 end
