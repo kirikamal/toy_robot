@@ -2,7 +2,7 @@
 
 #### What is this ?
 
-Toy Robot is a ruby coding exercise that we get our potential candidates  complete for us (Mable) to understand their capabilities.  
+Toy Robot is a ruby coding exercise given by interviewer's to candidates to understand their capabilities.
 
 #### What do I need to do ?
 
@@ -76,3 +76,21 @@ MOVE
 REPORT
 ```
 Output: `3,3,NORTH`
+
+
+###---------------------------------------------------------------------------------------------
+
+### How to run the program
+There are 4 data files in the root directory (commands1.txt, commands2.txt, commands3.txt and commands4.txt). The commands4.txt file contains invalid commands. User needs to run the program in following format:
+
+```ruby lib/toy_robot.rb commands1.txt```
+
+### Run the test
+```rspec spec```
+
+### My approach
+
+My approach for this task is
+1. Clean & efficient code.
+2. Test coverage for core functionalities.
+3. Use my recent experiences in Meta-programming and ruby inbuilt functions.
