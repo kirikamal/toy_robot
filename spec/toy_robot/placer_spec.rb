@@ -22,6 +22,10 @@ RSpec.describe ToyRobot::Placer do
     end
   end
 
+  it 'does not have the robot placed by default' do
+    expect(subject.robot_placed?).to eq(false)
+  end
+
   context'when robot has been placed' do
     let(:robot) { instance_double(ToyRobot::Robot, next_move: [0, 0]) }
     before { 
@@ -94,5 +98,12 @@ RSpec.describe ToyRobot::Placer do
         expect(subject.next_move).to eq([-1, 0])
       end
     end
-  end  
+  end
+
+  context 'when invalid command passes' do
+    it 'should display an invalid command' do
+      msg = "PEACE 1, 2, NORTH is an invalid command\n"
+      expect { subject.invalid("PEACE 1, 2, NORTH") }.to output(msg).to_stdout
+    end
+  end
 end

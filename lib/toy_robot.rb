@@ -7,6 +7,10 @@ require './lib/toy_robot/file_parser'
 
 module ToyRobot
   parser = ToyRobot::FileParser.new
-  commands = parser.load_commands(ARGV[0])
-  parser.run(commands)
+ 
+  # To prevent rspec test case failed
+  if ARGV[0] != 'spec'
+    commands = parser.load_commands(ARGV[0])
+    parser.run(commands)
+  end  
 end
