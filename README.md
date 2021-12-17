@@ -94,3 +94,4 @@ My approach for this task is
 1. Clean & efficient code.
 2. Test coverage for core functionalities.
 3. Use my recent experiences in Meta-programming and ruby inbuilt functions.
+4. Read the commands from the file instead of command prompt.
